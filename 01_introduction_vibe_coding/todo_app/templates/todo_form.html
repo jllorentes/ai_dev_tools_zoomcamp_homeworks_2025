@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow" style="max-width: 600px; margin: auto;">
+    <div class="card-header bg-success text-white">
+        <!-- Cambia el título dinámicamente según si editamos o creamos -->
+        <h2 class="mb-0">{% if form.instance.pk %}Editar Tarea{% else %}Nueva Tarea{% endif %}</h2>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <!-- Renderiza el formulario de Django con estilo básico -->
+            {{ form.as_p }}
+            
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <a href="{% url 'todo_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
